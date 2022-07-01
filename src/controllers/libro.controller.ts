@@ -52,12 +52,18 @@ class LibroController {
     }
 
     public async list() : Promise<IResponse>{
-        const data = await libro.find({});
-        return{
-            message: "Success: All libros retrieved",
-            status : 200,
-            content : data
-        }
+        return libro.find({}).then(data => {
+            return{
+                message: "Success: All libros retrieved",
+                status : 200,
+                content : data
+            };
+        }).catch(err => {
+            return{ message: "Error on retrieve Libros",
+            status: 500,
+            content: err }
+        });
+        
     }
 
     public async retrieve(docId: String) : Promise<IResponse> {        
