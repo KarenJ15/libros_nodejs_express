@@ -1,10 +1,10 @@
 import {Schema, model} from 'mongoose';
-import internal from 'stream';
+
 export interface ILibro{
     tittle: null | String;
-    Genero: String;
+    Genero: null | String;
     dateOf: null | Date;
-    numpages: Number | null;
+    numpages: null | Number;
     sinopsis: null | String;
 }
 const libroSchema = new Schema<ILibro>({
@@ -15,4 +15,4 @@ const libroSchema = new Schema<ILibro>({
     sinopsis:{type:String}
 });
 const libro = model <ILibro>('Libro', libroSchema);
-export {libro};
+export {libro}

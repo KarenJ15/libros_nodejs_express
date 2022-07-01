@@ -1,6 +1,5 @@
-import { Request, Response } from "express";
-import { isPartiallyEmittedExpression } from "typescript";
-import { ILibro, libro } from "../models/libro.model";
+import { Request, Response } from 'express';
+import { libro, ILibro } from "../models/libro.model";
 import { IResponse } from "../models/response.model";
 
 export const createLibro = async (req: Request, res: Response)=> {           
@@ -12,7 +11,7 @@ export const createLibro = async (req: Request, res: Response)=> {
 export const retrieveLibro = async (req: Request, res: Response) =>{
     const docId : String = req.params.id;
     const response = await new LibroController().retrieve(docId);
-    return res.status(201).json(response);
+    return res.status(response.status).json(response);
 }
 
 export const updateLibro = async (req: Request, res: Response)=> {           
@@ -37,7 +36,7 @@ class LibroController {
 
    public async create(payload: ILibro) : Promise<IResponse> {
         const Libro = new libro(payload);
-        return libro.save().then(data => {
+        return Libro.save().then(data => {
             return {
                 message: "CREATED: Libro added to database",
                 status: 201,
