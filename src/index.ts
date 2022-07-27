@@ -1,5 +1,4 @@
 import express from 'express';
-import {mainModule} from 'process';
 import { PORT } from './config';
 import {connectToMongodb} from "./database";
 import { router } from './router';

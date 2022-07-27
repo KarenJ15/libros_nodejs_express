@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const libro_controller_1 = require("./controllers/libro.controller");
 const router = (app) => {
+    const cors = require('cors');
+    app.use(cors());
     app.post("/libros", libro_controller_1.createLibro);
     app.get("/libros/:id", libro_controller_1.retrieveLibro);
     app.put("/libros/:id", libro_controller_1.updateLibro);

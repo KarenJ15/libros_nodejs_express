@@ -62,12 +62,17 @@ class LibroController {
     }
     list() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield libro_model_1.libro.find({});
-            return {
-                message: "Success: All libros retrieved",
-                status: 200,
-                content: data
-            };
+            return libro_model_1.libro.find({}).then(data => {
+                return {
+                    message: "Success: All libros retrieved",
+                    status: 200,
+                    content: data
+                };
+            }).catch(err => {
+                return { message: "Error on retrieve Libros",
+                    status: 500,
+                    content: err };
+            });
         });
     }
     retrieve(docId) {

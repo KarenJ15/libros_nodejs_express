@@ -1,6 +1,7 @@
 //import { ILibro } from "./libro.model";
 
-export interface IResponse {    
+export interface IResponse {
+    [x: string]: any;    
     message: string;
     status: number;
     content: null | any;    

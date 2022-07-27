@@ -33,8 +33,7 @@ export const listLibros = async (req: Request, res: Response) => {
 }
 
 class LibroController {
-
-   public async create(payload: ILibro) : Promise<IResponse> {
+    public async create(payload: ILibro) : Promise<IResponse> {
         const Libro = new libro(payload);
         return Libro.save().then(data => {
             return {
@@ -50,7 +49,7 @@ class LibroController {
             }
         });
     }
-
+    
     public async list() : Promise<IResponse>{
         return libro.find({}).then(data => {
             return{
@@ -65,7 +64,7 @@ class LibroController {
         });
         
     }
-
+    
     public async retrieve(docId: String) : Promise<IResponse> {        
         return libro.findOne({_id: docId}).then(data => {
             if(data === null) {
@@ -88,7 +87,7 @@ class LibroController {
             };
         });        
     }
-
+    
     public async update(docId: String, payload : ILibro) : Promise<IResponse>{
         return libro.updateOne({_id: docId} , { $set: { 
             tittle: payload.tittle,
@@ -110,7 +109,7 @@ class LibroController {
             }
         });
     }
-
+    
     public async delete(docId: String) : Promise<IResponse> {
         return libro.deleteOne({_id: docId}).then(data => {
             if (data.deletedCount == 0) {
